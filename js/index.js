@@ -25,7 +25,12 @@ $('#page1').bind('pageinit', function(event) {
     $('#vibrate').on('click', vibrateClick);
 });
 function alertClick(){
-	navigator.notification.alert('Message &agrave; afficher', alertDismissed, 'Titre', 'Done');
+	if(navigator.notification){
+		navigator.notification.alert('Message &agrave; afficher', alertDismissed, 'Titre', 'Done');
+	} else {
+		alert("no navigation.notification");
+	}
+	
 }
 function alertDismissed() {
     alert('Message navigator KO');
