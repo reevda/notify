@@ -16,6 +16,47 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+$('#page1').bind('pageinit', function(event) {
+    $('#alert').on('click', alertClick);
+    $('#confirm').on('click', confirmClick);
+    $('#prompt').on('click', promptClick);
+    $('#beep').on('click', beepClick);
+    $('#vibrate').on('click', vibrateClick);
+});
+function alertClick(){
+	navigator.notification.alert('Message &agrave; afficher', alertDismissed, 'Titre', 'Done');
+}
+function alertDismissed() {
+    alert('Message navigator KO');
+}
+function confirmClick(){
+	navigator.notification.confirm(
+            'You are the winner!', // message
+             onConfirm,            // callback to invoke with index of button pressed
+            'Game Over',           // title
+            ['Restart','Exit']         // buttonLabels
+        );
+}
+function onConfirm(buttonIndex){
+	alert('You selected button ' + buttonIndex);
+}
+function promptClick(){
+	navigator.notification.prompt('Prompt msg', promptConfirm, 'Prompt', ['Ok','Exit'], 'Default')
+}
+function promptConfirm(results){
+	alert("You selected button number " + results.buttonIndex + " and entered " + results.input1);
+}
+function beepClick(){
+	navigator.notification.beep(2);
+}
+function vibrateClick(){
+	navigator.notification.vibrate();
+}
+
+
+
+
 var app = {
     // Application Constructor
     initialize: function() {
