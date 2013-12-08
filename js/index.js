@@ -25,6 +25,7 @@ $('#page1').bind('pageinit', function(event) {
     $('#vibrate').on('click', vibrateClick);
 });
 function alertClick(){
+	console.log("alertClick() fired");
 	if(navigator.notification){
 		navigator.notification.alert('Message &agrave; afficher', alertDismissed, 'Titre', 'Done');
 	} else {
